@@ -70,7 +70,9 @@ public class SearchTree implements NodeList{
 
     @Override
     public void traverse(ListItem root) {
-
+        traverse(root.previous());
+        System.out.println(root.value);
+        traverse(root.next());
     }
 /*
 This one again I was only able to write thanks to a one guy's comment.
