@@ -44,9 +44,12 @@ public class MyLinkedList implements NodeList {
                     actItem.setPrevious(newItem);
                     newItem.setNext(actItem);
                 }
+            } else {
+//                they are equal
+                return false;
             }
         }
-        // they are equal or something went wrong
+        //something went wrong
         return false;
     }
 

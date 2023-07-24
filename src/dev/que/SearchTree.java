@@ -1,6 +1,6 @@
 package dev.que;
 
-public class SearchTree implements NodeList{
+public class SearchTree implements NodeList {
     ListItem root;
 
     public SearchTree(ListItem root) {
@@ -40,9 +40,11 @@ public class SearchTree implements NodeList{
                 } else {
                     actItem = actItem.previous();
                 }
+            } else {
+                return false;
             }
         }
-        // they are equal or something went wrong
+        //  something went wrong
         return false;
     }
 
@@ -50,17 +52,15 @@ public class SearchTree implements NodeList{
     public boolean removeItem(ListItem item) {
         ListItem actItem = this.root;
         ListItem parent = actItem;
-        while (actItem != null){
+        while (actItem != null) {
             int comp = actItem.compareTo(item);
-            if (comp == 0){
+            if (comp == 0) {
                 performRemoval(actItem, parent);
                 return true;
-            }
-            else if (comp < 0){
+            } else if (comp < 0) {
                 parent = actItem;
                 actItem = actItem.next();
-            }
-            else {
+            } else {
                 parent = actItem;
                 actItem = actItem.previous();
             }
@@ -70,54 +70,52 @@ public class SearchTree implements NodeList{
 
     @Override
     public void traverse(ListItem root) {
-        if (root != null){
+        if (root != null) {
             traverse(root.previous());
             System.out.println(root.getValue());
             traverse(root.next());
         }
     }
-/*
-This one again I was only able to write thanks to a one guy's comment.
-Course instructor didn't introduce an idea of search tree and
-given exercise was described not precisely enough for me to understand, so it
-took quite much time understand how it works - and that's why I wrote
-much more comments than usual to help me understand the code when I'll be
-looking at it in the future.
-@Temo https://www.udemy.com/user/temo-48/ - his code was really helpfull
-https://youtu.be/Gt2yBZAhsGM
-https://youtu.be/b_NjndniOqY - these videos helped to understand concept of
-                               search tree
- */
-    private void performRemoval(ListItem item, ListItem parent){
-        if (item.previous() == null){
-            if (parent.previous() == item){
+
+    /*
+    This one again I was only able to write thanks to a one guy's comment.
+    Course instructor didn't introduce an idea of search tree and
+    given exercise was described not precisely enough for me to understand, so it
+    took quite much time understand how it works - and that's why I wrote
+    much more comments than usual to help me understand the code when I'll be
+    looking at it in the future.
+    @Temo https://www.udemy.com/user/temo-48/ - his code was really helpfull
+    https://youtu.be/Gt2yBZAhsGM
+    https://youtu.be/b_NjndniOqY - these videos helped to understand concept of
+                                   search tree
+     */
+    private void performRemoval(ListItem item, ListItem parent) {
+        if (item.previous() == null) {
+            if (parent.previous() == item) {
                 parent.setPrevious(item.next());
-            }
-            else if (parent.next() == item){
+            } else if (parent.next() == item) {
                 parent.setNext(item.next());
             }
 //            item is the parent - item is root
             else {
                 this.root = item.next();
             }
-        }
-        else if (item.next() == null){
-            if (parent.next() == item){
+        } else if (item.next() == null) {
+            if (parent.next() == item) {
                 parent.setNext(item.previous());
-            }
-            else if (parent.previous() == item){
+            } else if (parent.previous() == item) {
                 parent.setPrevious(item.previous());
             }
         }
 //        item has not null branches
-        else{
+        else {
 //            going one place right and then left to replace item with greater value
 //            and keep the logic of the tree
             ListItem actItem = item.next();
             ListItem leftParent = item;
 
 //            till the branch end
-            while(actItem.previous() != null){
+            while (actItem.previous() != null) {
                 leftParent = actItem;
                 actItem = actItem.previous();
             }
@@ -125,10 +123,9 @@ https://youtu.be/b_NjndniOqY - these videos helped to understand concept of
             item.setValue(actItem.getValue());
 //            if we didn't enter while loop it means we went just one step so
 //            leftparent is the item and actItem is item.next()
-            if (leftParent == item){
+            if (leftParent == item) {
                 item.setNext(actItem.next());
-            }
-            else{
+            } else {
                 leftParent.setPrevious(actItem);
             }
         }
