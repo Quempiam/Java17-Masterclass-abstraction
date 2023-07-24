@@ -20,7 +20,7 @@ public abstract class ListItem {
      * @param value value to set next Listitem with
      * @return next Listitem
      */
-    abstract ListItem setNext(Object value);
+    abstract ListItem setNext(ListItem item);
 
     /**
      *
@@ -33,7 +33,7 @@ public abstract class ListItem {
      * @param value value to set previous Listitem with
      * @return previous Listitem
      */
-    abstract ListItem setPrevious(Object value);
+    abstract ListItem setPrevious(ListItem item);
 
     /**
      * Compares this ListItem to given one.

@@ -70,13 +70,16 @@ public class SearchTree implements NodeList{
 
     @Override
     public void traverse(ListItem root) {
-        traverse(root.previous());
-        System.out.println(root.value);
-        traverse(root.next());
+        if (root != null){
+            traverse(root.previous());
+            System.out.println(root.getValue());
+            traverse(root.next());
+        }
     }
 /*
 This one again I was only able to write thanks to a one guy's comment.
-Course instructor didn't introduce an idea of binary search tree, so it
+Course instructor didn't introduce an idea of search tree and
+given exercise was described not precisely enough for me to understand, so it
 took quite much time understand how it works - and that's why I wrote
 much more comments than usual to help me understand the code when I'll be
 looking at it in the future.

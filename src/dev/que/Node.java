@@ -12,8 +12,8 @@ public class Node extends ListItem{
     }
 
     @Override
-    ListItem setNext(Object value) {
-        rightLink.setValue(value);
+    ListItem setNext(ListItem item) {
+        rightLink = item;
         return rightLink;
     }
 
@@ -23,20 +23,20 @@ public class Node extends ListItem{
     }
 
     @Override
-    ListItem setPrevious(Object value) {
-        leftLink.setValue(value);
+    ListItem setPrevious(ListItem item) {
+        leftLink = item;
         return leftLink;
     }
 
     /*
      * I got this idea from comment section of the course. Object doesn't implement Comparable
-     * so it can not be simply compared to another object. Casting it to Comparabe allows me to do so
+     * so it can not be simply compared to another object. Casting it to String allows me to do so
      * It surely throws errors in certain cases witch I'm not able yet to deal with at this moment
      **/
     @Override
     int compareTo(ListItem item) {
         if (item != null) {
-            return (((Comparable) this.value).compareTo(item.getValue()));
+            return ((String) super.getValue()).compareTo((String) item.getValue());
         }
         return -1;
     }
