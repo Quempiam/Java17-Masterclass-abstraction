@@ -1,7 +1,7 @@
 package dev.que;
 
 public class SearchTree implements NodeList {
-    ListItem root;
+    private ListItem root;
 
     public SearchTree(ListItem root) {
         this.root = root;

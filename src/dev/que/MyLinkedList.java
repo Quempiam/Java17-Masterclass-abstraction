@@ -1,7 +1,7 @@
 package dev.que;
 
 public class MyLinkedList implements NodeList {
-    ListItem root;
+    private ListItem root;
 
     public MyLinkedList(ListItem root) {
         this.root = root;
